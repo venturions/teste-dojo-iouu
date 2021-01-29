@@ -10,6 +10,8 @@
     "next": "latest",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
+    "react-input-mask": "2.0.4",
+    "react-intl-currency-input": "0.2.6",
     "react-is": "^16.8.0",
     "styled-components": "^5.0.0"
   },

@@ -1,4 +1,6 @@
 import { createGlobalStyle, ThemeProvider } from "styled-components";
+import { useRouter } from "next/router";
+import Menu from "../src/components/Menu/Menu";
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -8,10 +10,8 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    /* New styles */
     display: flex;
     flex-direction: column;
-    // Deixa branco no começo
   }
   html, body {
     min-height: 100vh;
@@ -39,10 +39,13 @@ const theme = {
 };
 
 export default function App({ Component, pageProps }) {
+  const router = useRouter();
+
   return (
     <>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
+        {router.pathname === "/" ? null : <Menu></Menu>}
         <Component {...pageProps} />
       </ThemeProvider>
     </>
