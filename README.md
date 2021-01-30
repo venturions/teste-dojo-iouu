@@ -2,11 +2,11 @@
 
 Projeto realizado durante um processo seletivo para a empresa IOUU Investimentos utilizando:
 
-[React](https://pt-br.reactjs.org/)
-[React Hooks](https://pt-br.reactjs.org/docs/hooks-intro.html)
-[Next.js](https://nextjs.org/)
-[styled-components](https://styled-components.com)
-[React Bootstrap](https://react-bootstrap.github.io)
+[React](https://pt-br.reactjs.org/)\
+[React Hooks](https://pt-br.reactjs.org/docs/hooks-intro.html)\
+[Next.js](https://nextjs.org/)\
+[styled-components](https://styled-components.com)\
+[React Bootstrap](https://react-bootstrap.github.io)https://github.com/venturions/teste-dojo-iouu\
 
 PS: Toda a estilização do layout e dos componentes foi inspirado na página da IOUU.
 
