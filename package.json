@@ -1,6 +1,6 @@
 {
   "author": "Alex Costa",
-  "name": "with-styled-components",
+  "name": "dojo-iouu",
   "version": "1.0.0",
   "scripts": {
     "dev": "next",
@@ -8,12 +8,13 @@
     "start": "next start"
   },
   "dependencies": {
+    "@material-ui/core": "4.11.3",
     "bootstrap": "4.6.0",
-    "lodash.merge": "4.6.2",
+    "lodash.filter": "4.6.0",
     "next": "latest",
+    "notistack": "1.0.3",
     "react": "^16.8.0",
     "react-bootstrap": "1.4.3",
-    "react-currency-input-field": "3.2.2",
     "react-data-table-component": "7.0.0-alpha-5",
     "react-dom": "^16.8.0",
     "react-input-mask": "2.0.4",

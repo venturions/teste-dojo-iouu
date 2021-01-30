@@ -8,6 +8,7 @@ import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "../src/components/Button/FormButton";
+import { useSnackbar } from "notistack";
 
 const LoginContainer = styled(Container)`
   display: flex;
@@ -57,19 +58,33 @@ const Title = styled.h1`
 `;
 
 export default function addInvestor(props) {
+  const [valorMascara, setValorMascara] = useState(0);
   const [value, setValue] = useState(0);
   const [enterprise, setEnterprise] = useState("");
   const [investor, setInvestor] = useState("");
 
-  const handleChange = (event, value, maskedValue) => {
-    setValue(maskedValue);
+  //Notificacao
+
+  const { enqueueSnackbar } = useSnackbar();
+
+  const setNotification = useCallback(
+    (message, variant) => {
+      enqueueSnackbar(message, {
+        variant: variant,
+      });
+    },
+    [enqueueSnackbar]
+  );
+
+  const handleChange = (event, value, valorMascara) => {
+    setValorMascara(valorMascara);
+    setValue(value);
+    value;
   };
 
   const handleSubmit = useCallback(
     (e) => {
       e.preventDefault();
-
-      console.log(value);
 
       let aux = [];
 
@@ -79,24 +94,30 @@ export default function addInvestor(props) {
         }
       }
 
-      if (enterprise !== "" && investor !== "" && value !== 0) {
+      if (enterprise !== "" && investor !== "" && valorMascara !== 0) {
         aux.push({
-          nome: investor,
+          investidor: investor,
           razaoSocial: enterprise,
+          valorMascara: valorMascara,
           valor: value,
         });
 
         props.setLendings(aux);
         props.setStep(3);
-      }
 
-      console.log(investor);
-      console.log(enterprise);
-
-      if (value !== 0 && investor !== "" && enterprise !== "") {
+        setNotification("Investimento feito com sucesso.", "success");
+      } else {
+        setNotification("Preencha todos os campos corretamente.", "error");
       }
     },
-    [value, investor, enterprise]
+    [
+      valorMascara,
+      investor,
+      enterprise,
+      props.lendings,
+      props.enterprises,
+      props.investors,
+    ]
   );
 
   return (
@@ -151,7 +172,7 @@ export default function addInvestor(props) {
                 Valor que o investidor irá aportar no empréstimo selecionado:
               </Typography>
               <CurrencyInput
-                value={value}
+                value={valorMascara}
                 onChange={handleChange}
               ></CurrencyInput>
             </Col>

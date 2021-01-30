@@ -12,6 +12,7 @@ import Form from "react-bootstrap/Form";
 import Button from "../src/components/Button/FormButton";
 import Input from "../src/components/Inputs/Input";
 import ClearButton from "../src/components/Button/ClearButton";
+import { useSnackbar } from "notistack";
 
 const LoginContainer = styled(Container)`
   display: flex;
@@ -65,6 +66,19 @@ export default function RegisterEnterprise(props) {
   const [cnpj, setCnpj] = useState("");
   const [valorEmprestimo, setValorEmprestimo] = useState(0);
 
+  //Notificacao
+
+  const { enqueueSnackbar } = useSnackbar();
+
+  const setNotification = useCallback(
+    (message, variant) => {
+      enqueueSnackbar(message, {
+        variant: variant,
+      });
+    },
+    [enqueueSnackbar]
+  );
+
   const handleSubmit = useCallback(
     (e) => {
       e.preventDefault();
@@ -93,6 +107,8 @@ export default function RegisterEnterprise(props) {
 
         props.setEnterprises(aux);
         props.setStep(1);
+      } else {
+        setNotification(`Preencha todos os campos corretamente.`, "error");
       }
     },
     [razaoSocial, cnpj, valorEmprestimo, props.enterprises]
@@ -135,7 +151,7 @@ export default function RegisterEnterprise(props) {
                   setCnpj(e.target.value.trimStart());
                 }}
               >
-                {(inputProps) => <Input placeholder="CNPJ"></Input>}
+                {() => <Input placeholder="CNPJ"></Input>}
               </InputMask>
             </InputGroup>
             <InputGroup className="mb-4 mt-2 pl-2 pr-2">

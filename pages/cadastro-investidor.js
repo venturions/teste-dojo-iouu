@@ -2,8 +2,6 @@ import React, { useState, useCallback } from "react";
 import styled from "styled-components";
 import Background from "../src/components/Background/Background";
 import InputMask from "react-input-mask";
-import CurrencyInput from "../src/components/Inputs/CurrencyInput";
-
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -12,17 +10,11 @@ import Form from "react-bootstrap/Form";
 import Button from "../src/components/Button/FormButton";
 import Input from "../src/components/Inputs/Input";
 import ClearButton from "../src/components/Button/ClearButton";
+import { useSnackbar } from "notistack";
 
 const LoginContainer = styled(Container)`
   display: flex;
   align-items: center;
-`;
-
-const Typography = styled.h6`
-  font-size: 1rem;
-  @media only screen and (max-width: 600px) {
-    font-size: 0.8rem;
-  }
 `;
 
 const Card = styled(Col)`
@@ -64,6 +56,19 @@ export default function RegisterInvestor(props) {
   const [nome, setNome] = useState("");
   const [cpf, setCpf] = useState("");
 
+  //Notificacao
+
+  const { enqueueSnackbar } = useSnackbar();
+
+  const setNotification = useCallback(
+    (message, variant) => {
+      enqueueSnackbar(message, {
+        variant: variant,
+      });
+    },
+    [enqueueSnackbar]
+  );
+
   const handleSubmit = useCallback(
     (e) => {
       e.preventDefault();
@@ -88,6 +93,8 @@ export default function RegisterInvestor(props) {
 
         props.setInvestors(aux);
         props.setStep(2);
+      } else {
+        setNotification(`Preencha todos os campos corretamente.`, "error");
       }
     },
     [nome, cpf]
@@ -124,7 +131,7 @@ export default function RegisterInvestor(props) {
                   setCpf(e.target.value.trimStart());
                 }}
               >
-                {(inputProps) => <Input placeholder="CPF"></Input>}
+                {() => <Input placeholder="CPF"></Input>}
               </InputMask>
             </InputGroup>
             <Row>

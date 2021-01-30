@@ -12,6 +12,7 @@ import FormControl from "react-bootstrap/FormControl";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Input from "../src/components/Inputs/Input";
+import { useSnackbar } from "notistack";
 
 // import Box from './Box';
 
@@ -78,11 +79,26 @@ export default function Login() {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
 
+  //Notificacao
+
+  const { enqueueSnackbar } = useSnackbar();
+
+  const setNotification = useCallback(
+    (message, variant) => {
+      enqueueSnackbar(message, {
+        variant: variant,
+      });
+    },
+    [enqueueSnackbar]
+  );
+
   const handleSubmit = useCallback(
     (e) => {
       e.preventDefault();
       if (user === "teste" && password === "1234") {
         router.push("/home");
+      } else {
+        setNotification(`Preencha todos os campos corretamente.`, "error");
       }
     },
     [user, password]
@@ -96,10 +112,6 @@ export default function Login() {
         <Card xs={8} sm={8} md={4} lg={4}>
           <StyledForm onSubmit={handleSubmit}>
             <Title>BEM VINDO</Title>
-            {/* <Input
-              
-            ></Input> */}
-
             <InputGroup className="mb-4 mt-2 pl-4 pr-4">
               <Input
                 onChange={(e) => {

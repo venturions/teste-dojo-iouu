@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Background from "../src/components/Background/Background";
+import Menu from "../src/components/Menu/Menu";
 
 import RegisterEnterprise from "../pages/cadastro-empresa";
 import RegisterInvestor from "../pages/cadastro-investidor";
@@ -11,11 +11,10 @@ export default function Home() {
 
   const [enterprises, setEnterprises] = useState([]);
   const [investors, setInvestors] = useState([]);
-  const [lendingsInfo, setLendingsInfo] = useState([]);
   const [lendings, setLendings] = useState([]);
 
   const renderSwitch = () => {
-    console.log(enterprises);
+    enterprises;
     switch (step) {
       case 0:
         return (
@@ -58,5 +57,10 @@ export default function Home() {
     }
   };
 
-  return <>{renderSwitch()}</>;
+  return (
+    <>
+      <Menu setStep={setStep}></Menu>
+      {renderSwitch()}
+    </>
+  );
 }

@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { useRouter } from "next/router";
 
 const Container = styled.div`
   position: "absolute";
@@ -69,8 +68,6 @@ const A = styled.a`
 `;
 
 export default function StyledComponents(props) {
-  const router = useRouter();
-
   return (
     <>
       <Container>
@@ -78,13 +75,13 @@ export default function StyledComponents(props) {
           <Ul>
             <Logo
               onClick={() => {
-                router.push("/home");
+                props.setStep(0);
               }}
             ></Logo>
             <Li>
               <A
                 onClick={() => {
-                  router.push("/cadastro-empresa");
+                  props.setStep(0);
                 }}
               >
                 Cadastro de Empresa
@@ -93,7 +90,7 @@ export default function StyledComponents(props) {
             <Li>
               <A
                 onClick={() => {
-                  router.push("/cadastro-investidor");
+                  props.setStep(1);
                 }}
               >
                 Cadastro de Investidor
@@ -102,7 +99,7 @@ export default function StyledComponents(props) {
             <Li>
               <A
                 onClick={() => {
-                  router.push("/adicionar-investidor");
+                  props.setStep(2);
                 }}
               >
                 Adicionar Investidor
@@ -111,7 +108,7 @@ export default function StyledComponents(props) {
             <Li>
               <A
                 onClick={() => {
-                  router.push("/emprestimos");
+                  props.setStep(3);
                 }}
               >
                 Empréstimos
