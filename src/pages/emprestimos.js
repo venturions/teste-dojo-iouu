@@ -19,7 +19,6 @@ const LoginContainer = styled(Container)`
   display: flex;
   align-items: center;
   justify-content: center;
-  /* position: "absolute"; */
   z-index: 1;
   width: 100vw;
   z-index: 0;
@@ -158,7 +157,11 @@ export default function Lendings(props) {
       <Background backgroundImage="https://blog.easycredito.com.br/wp-content/uploads/2017/08/diferenca-emprestimo-financiamento-imoveis-1.png">
         <LoginContainer>
           <Card xs={12} sm={12} md={12} lg={12}>
-            <DataTable columns={columns} data={data}></DataTable>
+            <DataTable
+              noDataComponent={<h6 className="m-4">Sem dados para exibir</h6>}
+              columns={columns}
+              data={data}
+            ></DataTable>
           </Card>
         </LoginContainer>
       </Background>

@@ -8,6 +8,8 @@ Projeto realizado durante um processo seletivo para a empresa IOUU Investimentos
 [styled-components](https://styled-components.com)
 [React Bootstrap](https://react-bootstrap.github.io)
 
+PS: Toda a estilização do layout e dos componentes foi inspirado na página da IOUU.
+
 Hospedado em https://teste-dojo-iouu.vercel.app/ pela [Vercel](https://vercel.com/).
 
 ## Como instalar
