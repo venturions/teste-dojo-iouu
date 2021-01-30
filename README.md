@@ -3,8 +3,10 @@
 Projeto realizado durante um processo seletivo para a empresa IOUU Investimentos utilizando:
 
 [React](https://pt-br.reactjs.org/)
+[React Hooks](https://pt-br.reactjs.org/docs/hooks-intro.html)
 [Next.js](https://nextjs.org/)
-[styled-components](https://github.com/styled-components/styled-components)
+[styled-components](https://styled-components.com)
+[React Bootstrap](https://react-bootstrap.github.io)
 
 Hospedado em https://teste-dojo-iouu.vercel.app/ pela [Vercel](https://vercel.com/).
 
@@ -24,8 +26,7 @@ Dentro do terminal do node e na raiz do projeto execute `npm install` com o [npm
 
 No terminal do node digite `npm run dev` e acesse http://localhost:3000/.
 
+Login para acessar o sistema.
 
-
-
-
-
+Usuário : Teste
+Senha : 1234
