@@ -63,11 +63,12 @@ const A = styled.a`
   &:hover {
     font-weight: 700;
     cursor: pointer;
+    text-decoration: none;
     color: rgb(65, 211, 189);
   }
 `;
 
-export default function StyledComponents() {
+export default function StyledComponents(props) {
   const router = useRouter();
 
   return (

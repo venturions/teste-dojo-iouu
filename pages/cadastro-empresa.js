@@ -1,75 +1,80 @@
 import React, { useState, useCallback } from "react";
+import styled from "styled-components";
 import Background from "../src/components/Background/Background";
-import OutlinedInput from "../src/components/Inputs/OutlinedInput";
-import Head from "next/head";
-import Button from "../src/components/Button/Button";
 import InputMask from "react-input-mask";
 import CurrencyInput from "../src/components/Inputs/CurrencyInput";
 
-import styled from "styled-components";
+import Container from "react-bootstrap/Container";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import InputGroup from "react-bootstrap/InputGroup";
+import Form from "react-bootstrap/Form";
+import Button from "../src/components/Button/FormButton";
+import Input from "../src/components/Inputs/Input";
+import ClearButton from "../src/components/Button/ClearButton";
 
-const LoginContainer = styled.div`
+const LoginContainer = styled(Container)`
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  width: 100%;
-  max-width: 350px;
-  padding-top: 45px;
-  margin: auto 10%;
-  @media screen and (max-width: 500px) {
-    margin: auto;
-    padding: 15px;
+`;
+
+const Typography = styled.h6`
+  font-size: 1rem;
+  @media only screen and (max-width: 600px) {
+    font-size: 0.8rem;
   }
 `;
 
-const Grid = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-const GridReverse = styled.div`
-  display: flex;
-  flex-direction: row-reverse;
-  padding-top: 2rem;
-`;
-
-const Card = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  min-width: 40rem;
+const Card = styled(Col)`
   background-color: white;
   border-radius: 2%;
   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
-  @media screen and (max-width: 500px) {
-    margin: auto;
-    padding: 15px;
-  }
 `;
 
-const StyledForm = styled.form`
+const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
+  justify-content: center;
 `;
 
 const Title = styled.h1`
   display: flex;
   justify-content: center;
   padding: 2rem 2rem 1rem 2rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
   width: 100%;
   color: ${({ theme }) => theme.colors.primary};
+
+  @media only screen and (max-width: 1200px) {
+    font-size: 0.8rem;
+  }
+  @media only screen and (max-width: 1000px) {
+    font-size: 0.9rem;
+  }
+  @media only screen and (max-width: 600px) {
+    font-size: 0.7rem;
+  }
+
+  @media only screen and (max-width: 400px) {
+    font-size: 0.5rem;
+  }
 `;
 
-export default function RegisterEnterprise() {
+export default function RegisterEnterprise(props) {
   const [razaoSocial, setRazaoSocial] = useState("");
   const [cnpj, setCnpj] = useState("");
-  const [valorEmprestimo, setValorEmprestimo] = useState("");
+  const [valorEmprestimo, setValorEmprestimo] = useState(0);
 
   const handleSubmit = useCallback(
     (e) => {
       e.preventDefault();
+      let aux = [];
+
+      if (props.enterprises.length !== 0) {
+        for (let i = 0; i < props.enterprises.length; i++) {
+          aux.push(props.enterprises[i]);
+        }
+      }
 
       if (
         valorEmprestimo !== 0 &&
@@ -80,22 +85,21 @@ export default function RegisterEnterprise() {
           .replaceAll("-", "")
           .replaceAll("/", "").length === 14
       ) {
-        const data = {
+        aux.push({
           razaoSocial: razaoSocial,
-          cnpj: cnpj
-            .replaceAll("_", "")
-            .replaceAll(".", "")
-            .replaceAll("-", "")
-            .replaceAll("/", ""),
+          cnpj: cnpj,
           valorEmprestimo: valorEmprestimo,
-        };
+        });
+
+        props.setEnterprises(aux);
+        props.setStep(1);
       }
     },
-    [razaoSocial, cnpj, valorEmprestimo]
+    [razaoSocial, cnpj, valorEmprestimo, props.enterprises]
   );
 
   const handleChange = (event, value, maskedValue) => {
-    setValorEmprestimo(value);
+    setValorEmprestimo(maskedValue);
   };
 
   const ClearInputs = () => {
@@ -107,71 +111,57 @@ export default function RegisterEnterprise() {
   return (
     //Se fosse em um caso real eu usaria uma imagem trabalhada e com menor tamanho para não necessitar de muitos dados móveis na hora de carregar a página//
     <Background backgroundImage="https://blog.easycredito.com.br/wp-content/uploads/2017/08/diferenca-emprestimo-financiamento-imoveis-1.png">
-      <Head>
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap"
-          rel="stylesheet"
-        />
-        <title>Dojo - Iouu</title>
-      </Head>
       <LoginContainer>
-        <Card>
+        <Col xs={2} sm={2} md={2} lg={4}></Col>
+        <Card xs={8} sm={8} md={8} lg={4}>
           <StyledForm onSubmit={handleSubmit}>
             <Title>Cadastrar Empresa/Empréstimo</Title>
-
-            <Grid
-              style={{
-                display: "flex",
-                justifyContent: "left",
-                paddingLeft: "3rem",
-              }}
-            >
-              <OutlinedInput
-                title="Razão Social"
+            <InputGroup className="mb-4 mt-2 pl-4 pr-4">
+              <Input
                 value={razaoSocial}
                 onChange={(e) => {
                   setRazaoSocial(e.target.value.trimStart());
                 }}
-              ></OutlinedInput>
-              <div style={{ marginLeft: "3rem" }}>
-                <InputMask
-                  mask="99.999.999/9999-99"
-                  maskchar
-                  value={cnpj}
-                  onChange={(e) => {
-                    setCnpj(e.target.value.trimStart());
-                  }}
-                >
-                  {(inputProps) => <OutlinedInput title="CNPJ"></OutlinedInput>}
-                </InputMask>
-              </div>
-            </Grid>
-            <Grid
-              style={{
-                display: "flex",
-                justifyContent: "left",
-                paddingLeft: "3rem",
-              }}
-            >
-              <CurrencyInput
-                title="Valor do Empréstimo"
-                value={valorEmprestimo}
-                onChange={handleChange}
+                placeholder="Razão Social"
+                type="text"
               />
-            </Grid>
-            <GridReverse>
-              <Button primary type="submit" text="Cadastrar"></Button>
-              <Button
-                primary
-                text="Limpar"
-                onClick={() => {
-                  ClearInputs();
+            </InputGroup>
+            <InputGroup className="mb-4 mt-2 pl-4 pr-4">
+              <InputMask
+                mask="99.999.999/9999-99"
+                maskchar
+                value={cnpj}
+                onChange={(e) => {
+                  setCnpj(e.target.value.trimStart());
                 }}
-              ></Button>
-            </GridReverse>
+              >
+                {(inputProps) => <Input placeholder="CNPJ"></Input>}
+              </InputMask>
+            </InputGroup>
+            <InputGroup className="mb-4 mt-2 pl-2 pr-2">
+              <Col xs={12} sm={12} md={12} lg={12}>
+                <Typography>Valor do Empréstimo:</Typography>
+                <CurrencyInput
+                  value={valorEmprestimo}
+                  onChange={handleChange}
+                ></CurrencyInput>
+              </Col>
+            </InputGroup>
+            <Row>
+              <Col xs={6} sm={6} md={6} lg={6}>
+                <ClearButton onClick={ClearInputs} className="mb-4 mt-4">
+                  Limpar
+                </ClearButton>
+              </Col>
+              <Col xs={6} sm={6} md={6} lg={6}>
+                <Button type="submit" className="mb-4 mt-4">
+                  Cadastrar
+                </Button>
+              </Col>
+            </Row>
           </StyledForm>
         </Card>
+        <Col xs={2} sm={2} md={2} lg={4}></Col>
       </LoginContainer>
     </Background>
   );

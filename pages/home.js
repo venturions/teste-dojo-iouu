@@ -1,19 +1,62 @@
-import React from "react";
+import React, { useState } from "react";
 import Background from "../src/components/Background/Background";
-import Head from "next/head";
+
+import RegisterEnterprise from "../pages/cadastro-empresa";
+import RegisterInvestor from "../pages/cadastro-investidor";
+import AddInvestor from "../pages/adicionar-investidor";
+import Lendings from "../pages/emprestimos";
 
 export default function Home() {
-  return (
-    //Se fosse em um caso real eu usaria uma imagem trabalhada e com menor tamanho para não necessitar de muitos dados móveis na hora de carregar a página//
-    <Background backgroundImage="https://blog.easycredito.com.br/wp-content/uploads/2017/08/diferenca-emprestimo-financiamento-imoveis-1.png">
-      <Head>
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap"
-          rel="stylesheet"
-        />
-        <title>Dojo - Iouu</title>
-      </Head>
-    </Background>
-  );
+  const [step, setStep] = useState(0);
+
+  const [enterprises, setEnterprises] = useState([]);
+  const [investors, setInvestors] = useState([]);
+  const [lendingsInfo, setLendingsInfo] = useState([]);
+  const [lendings, setLendings] = useState([]);
+
+  const renderSwitch = () => {
+    console.log(enterprises);
+    switch (step) {
+      case 0:
+        return (
+          <RegisterEnterprise
+            setStep={setStep}
+            enterprises={enterprises}
+            setEnterprises={setEnterprises}
+          ></RegisterEnterprise>
+        );
+      case 1:
+        return (
+          <RegisterInvestor
+            investors={investors}
+            setInvestors={setInvestors}
+            setStep={setStep}
+          ></RegisterInvestor>
+        );
+      case 2:
+        return (
+          <AddInvestor
+            setStep={setStep}
+            enterprises={enterprises}
+            investors={investors}
+            setLendings={setLendings}
+            lendings={lendings}
+          ></AddInvestor>
+        );
+      case 3:
+        return (
+          <Lendings
+            setStep={setStep}
+            enterprises={enterprises}
+            investors={investors}
+            setLendings={setLendings}
+            lendings={lendings}
+          ></Lendings>
+        );
+      default:
+        break;
+    }
+  };
+
+  return <>{renderSwitch()}</>;
 }
