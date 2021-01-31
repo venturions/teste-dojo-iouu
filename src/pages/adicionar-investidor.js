@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
+import Select from '../components/Select/Select';
 import Button from '../components/Button/FormButton';
 import { useSnackbar } from 'notistack';
 
@@ -125,11 +125,12 @@ export default function addInvestor(props) {
             <Title>Adicionar investidor ao empréstimo</Title>
             <Col xs={12} sm={12} md={12} lg={12}>
               <Form.Label>Selecione o investidor</Form.Label>
-              <FormControl
+              <Select
                 as="select"
                 onChange={(e) => {
                   setInvestor(e.target.value);
                 }}
+                disabled={props.investors.length < 1}
               >
                 <option hidden>Escolha um</option>
                 {props.investors &&
@@ -140,16 +141,17 @@ export default function addInvestor(props) {
                       </option>
                     );
                   })}
-              </FormControl>
+              </Select>
             </Col>
             <Col className="mt-4" xs={12} sm={12} md={12} lg={12}>
               <Form.Label>Selecione a Empresa</Form.Label>
-              <FormControl
+              <Select
                 as="select"
                 value={enterprise}
                 onChange={(e) => {
                   setEnterprise(e.target.value);
                 }}
+                disabled={props.enterprises.length < 1}
               >
                 <option hidden>Escolha um</option>
                 {props.enterprises &&
@@ -160,7 +162,7 @@ export default function addInvestor(props) {
                       </option>
                     );
                   })}
-              </FormControl>
+              </Select>
             </Col>
             <Col className="mt-4" xs={12} sm={12} md={12} lg={12}>
               <Typography>
