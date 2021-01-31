@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import Background from '../components/Background/Background';
 import InputMask from 'react-input-mask';
 import CurrencyInput from '../components/Inputs/CurrencyInput';
-
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
