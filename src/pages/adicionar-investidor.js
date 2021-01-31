@@ -110,14 +110,7 @@ export default function addInvestor(props) {
         setNotification("Preencha todos os campos corretamente.", "error");
       }
     },
-    [
-      valorMascara,
-      investor,
-      enterprise,
-      props.lendings,
-      props.enterprises,
-      props.investors,
-    ]
+    [valorMascara, investor, enterprise, props.lendings]
   );
 
   return (

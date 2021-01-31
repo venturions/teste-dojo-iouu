@@ -97,7 +97,7 @@ export default function RegisterInvestor(props) {
         setNotification(`Preencha todos os campos corretamente.`, "error");
       }
     },
-    [nome, cpf]
+    [nome, cpf, props.investors]
   );
 
   const ClearInputs = () => {
