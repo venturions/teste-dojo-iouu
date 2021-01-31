@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const Container = styled.div`
-  position: "absolute";
+  position: 'absolute';
   z-index: 1;
   width: 100vw;
   box-shadow: 0 4px 2px -2px gray;
@@ -32,7 +32,7 @@ const Li = styled.li`
 `;
 
 const Logo = styled(Li)`
-  background: url("https://www.iouu.com.br/hubfs/raw_assets/public/IOUU_November2020/images/logo-green.svg")
+  background: url('https://www.iouu.com.br/hubfs/raw_assets/public/IOUU_November2020/images/logo-green.svg')
     no-repeat left top;
 `;
 

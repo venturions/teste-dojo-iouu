@@ -1,14 +1,14 @@
-import React from "react";
-import styled from "styled-components";
-import IntlCurrencyInput from "react-intl-currency-input";
+import React from 'react';
+import styled from 'styled-components';
+import IntlCurrencyInput from 'react-intl-currency-input';
 
 const currencyConfig = {
-  locale: "pt-BR",
+  locale: 'pt-BR',
   formats: {
     number: {
       BRL: {
-        style: "currency",
-        currency: "BRL",
+        style: 'currency',
+        currency: 'BRL',
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
       },

@@ -1,5 +1,4 @@
-// src/components/QuizBackground/index.js
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const LoginBackground = styled.div`
   display: flex;
