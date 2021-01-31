@@ -130,7 +130,7 @@ export default function addInvestor(props) {
                 onChange={(e) => {
                   setInvestor(e.target.value);
                 }}
-                disabled={props.investors.length === 0}
+                disabled={props.investors && props.investors.length === 0}
               >
                 <option hidden>Escolha um</option>
                 {props.investors &&
@@ -151,7 +151,7 @@ export default function addInvestor(props) {
                 onChange={(e) => {
                   setEnterprise(e.target.value);
                 }}
-                disabled={props.enterprises.length === 0}
+                disabled={props.enterprises && props.enterprises.length === 0}
               >
                 <option hidden>Escolha um</option>
                 {props.enterprises &&
