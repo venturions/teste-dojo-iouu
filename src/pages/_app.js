@@ -1,9 +1,9 @@
-import { createGlobalStyle, ThemeProvider } from "styled-components";
-import Head from "next/head";
-import { SnackbarProvider } from "notistack";
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import Head from 'next/head';
+import { SnackbarProvider } from 'notistack';
 
 // Importing the Bootstrap CSS
-import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -27,47 +27,45 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const theme = {
-  colors: {
-    primary: {
-      light: "#ffffff",
-      main: "#fafafa",
-      dark: "#c7c7c7",
-    },
-    secondary: {
-      light: "#6d6d6d",
-      main: "#424242",
-      dark: "#1b1b1b",
-    },
-  },
+    colors: {
+        primary: {
+            light: '#ffffff',
+            main: '#fafafa',
+            dark: '#c7c7c7'
+        },
+        secondary: {
+            light: '#6d6d6d',
+            main: '#424242',
+            dark: '#1b1b1b'
+        }
+    }
 };
 
 export default function App({ Component, pageProps }) {
-  return (
-    <>
-      <GlobalStyle />
-      <ThemeProvider theme={theme}>
-        <SnackbarProvider
-          anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "right",
-          }}
-        >
-          <Head>
-            <link rel="preconnect" href="https://fonts.gstatic.com" />
-            <link
-              href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap"
-              rel="stylesheet"
-            />
-            <link
-              rel="icon"
-              type="image/png"
-              href="https://www.iouu.com.br/hubfs/favicon.ico"
-            ></link>
-            <title>Dojo - IOUU</title>
-          </Head>
-          <Component {...pageProps} />
-        </SnackbarProvider>
-      </ThemeProvider>
-    </>
-  );
+    return (
+        <>
+            <GlobalStyle />
+            <ThemeProvider theme={theme}>
+                <SnackbarProvider
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'right'
+                    }}>
+                    <Head>
+                        <link rel="preconnect" href="https://fonts.gstatic.com" />
+                        <link
+                            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap"
+                            rel="stylesheet"
+                        />
+                        <link
+                            rel="icon"
+                            type="image/png"
+                            href="https://www.iouu.com.br/hubfs/favicon.ico"></link>
+                        <title>Dojo - IOUU</title>
+                    </Head>
+                    <Component {...pageProps} />
+                </SnackbarProvider>
+            </ThemeProvider>
+        </>
+    );
 }
