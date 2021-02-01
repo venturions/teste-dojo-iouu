@@ -30,5 +30,5 @@ No terminal do node digite `npm run dev` e acesse http://localhost:3000/.
 
 Login para acessar o sistema.
 
-Usuário : Teste\
+Usuário : teste\
 Senha : 1234

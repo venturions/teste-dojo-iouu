@@ -167,12 +167,12 @@ export default function RegisterEnterprise(props) {
               </Col>
             </InputGroup>
             <Row>
-              <Col xs={6} sm={6} md={6} lg={6}>
+              <Col xs={12} sm={12} md={6} lg={6}>
                 <ClearButton onClick={ClearInputs} className="mb-4 mt-4">
                   Limpar
                 </ClearButton>
               </Col>
-              <Col xs={6} sm={6} md={6} lg={6}>
+              <Col xs={12} sm={12} md={6} lg={6}>
                 <Button type="submit" className="mb-4 mt-4">
                   Cadastrar
                 </Button>
